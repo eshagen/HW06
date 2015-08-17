@@ -11,13 +11,35 @@
 #   - number of abecedarian words:
 ##############################################################################
 # Imports
+import string
 
-# Body
 
+def is_abecedarian(s):
+	if len(s) <= 1:
+		return True
+	if s[0] > s[1]:
+		return False
+	return is_abecedarian(s[1:])
+
+""" I definitely got online help for this one.  The 'return is_abecedarian(s[1:])'
+line never would've occurred to me, but seems so obvious after seeing it.
+"""
+
+def total_abecedarian():
+	# Pretty basic, just set up a counter to count the number of lines in words.txt
+	# that are abecedarian.
+	abc_counter = 0
+
+	with open("words.txt", 'r') as f:
+		data = f.readlines()
+		for lines in data:
+			if is_abecedarian(lines.strip()):
+				abc_counter += 1
+		return abc_counter
 
 ##############################################################################
 def main():
-    pass  # Call your function(s) here.
+    print total_abecedarian()
 
 if __name__ == '__main__':
     main()

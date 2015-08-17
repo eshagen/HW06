@@ -12,12 +12,36 @@
 ##############################################################################
 # Imports
 
-# Body
+def has_no_e():
+	# Keep count of the total words containing e or no e for later % calculation.
+	e_count = 0.0
+	no_e_count = 0.0
+
+	with open ("words.txt", "r") as f:
+		data = f.readlines()
+		for lines in data:
+			if has_e(lines):
+				e_count +=1
+			else:
+				no_e_count +=1
+				# Calculated the % of words without 'e'
+				percent = ((no_e_count/(e_count + no_e_count))*100)
+				print lines.strip() + " Percentage without 'e' {0}%".format(str(percent))
+
+
+def has_e(s):
+	# This function looks at each character in a string to see if 'e' ever appears.
+	for char in s:
+		if char == 'e':
+			return True
+			break
+		else:
+			continue
 
 
 ##############################################################################
 def main():
-    pass  # Call your function(s) here.
+    has_no_e()
 
 if __name__ == '__main__':
     main()
